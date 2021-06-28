@@ -445,8 +445,8 @@ where
         .into_iter()
         .map(|a| {
             // Modified by jackoelv for C2 20210330
-            let h = multiexp(
-            // let h = multiexp_fulldensity(
+            // let h = multiexp(
+            let h = multiexp_fulldensity(
                 &worker,
                 //h_params.clone(), // params.get_h(a.len())?,
                 params.get_h(a.len())?,
@@ -469,8 +469,8 @@ where
         // .map(|aux_assignment| {
         //     let l = multiexp(
         .map(|(_,aux_assignment)| {
-            let l = multiexp(
-            // let l = multiexp_fulldensity(
+            // let l = multiexp(
+            let l = multiexp_fulldensity(
                 &worker,
                 //l_params.clone(), // params.get_l(aux_assignment.len())?,
                 params.get_l(aux_assignment.len())?,
