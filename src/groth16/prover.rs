@@ -315,7 +315,7 @@ where
     // get params
     info!("ZQ: get params start");
     let now = Instant::now();
-    // let (tx_h, rx_h) = mpsc::channel();
+    let (tx_h, rx_h) = mpsc::channel();
     // let (tx_l, rx_l) = mpsc::channel();
     let (tx_a, rx_a) = mpsc::channel();
     let (tx_bg1, rx_bg1) = mpsc::channel();
