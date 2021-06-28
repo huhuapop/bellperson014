@@ -326,7 +326,7 @@ where
     pool.scoped(|scoped| {
         let params = &params;
         let provers = &mut provers;
-        h_params
+        // h_params
         scoped.execute(move || {
             let h_params = params.get_h(0).unwrap();
             tx_h.send(h_params).unwrap();
