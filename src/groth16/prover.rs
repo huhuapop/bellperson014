@@ -326,11 +326,11 @@ where
     pool.scoped(|scoped| {
         let params = &params;
         let provers = &mut provers;
-        // h_params
-        // scoped.execute(move || {
-        //     let h_params = params.get_h(0).unwrap();
-        //     tx_h.send(h_params).unwrap();
-        // });
+        h_params
+        scoped.execute(move || {
+            let h_params = params.get_h(0).unwrap();
+            tx_h.send(h_params).unwrap();
+        });
         // l_params
         // scoped.execute(move || {
         //     let l_params = params.get_l(0).unwrap();
@@ -378,7 +378,7 @@ where
     });
     // waiting params
     info!("ZQ: waiting params...");
-    // let h_params = rx_h.recv().unwrap();
+    let h_params = rx_h.recv().unwrap();
     // let l_params = rx_l.recv().unwrap();
     let (a_inputs_source, a_aux_source) = rx_a.recv().unwrap();
     let (b_g1_inputs_source, b_g1_aux_source) = rx_bg1.recv().unwrap();
@@ -448,8 +448,8 @@ where
             // let h = multiexp(
             let h = multiexp_fulldensity(
                 &worker,
-                //h_params.clone(), // params.get_h(a.len())?,
-                params.get_h(a.len())?,
+                h_params.clone(), // params.get_h(a.len())?,
+                // params.get_h(a.len())?,
 
                 FullDensity,
                 a,
