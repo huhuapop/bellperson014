@@ -400,6 +400,7 @@ where
     let now = Instant::now();
     let mut fft_kern = Some(LockedFFTKernel::<E>::new(log_d, priority));
 
+    info!("ZQ: a_s new");
     let a_s = provers
         .iter_mut()
         .map(|prover| {
@@ -428,10 +429,10 @@ where
             a.truncate(a_len);
 
             // Modified by jackoelv for C2 20210330
-            // Ok(Arc::new(
-            //     a.into_iter().map(|s| s.0.into_repr()).collect::<Vec<_>>(),
-            // ))
-            Ok(Arc::new(a.into_par_iter().map(|s| s.0.into_repr()).collect::<Vec<_>>()))
+            Ok(Arc::new(
+                a.into_iter().map(|s| s.0.into_repr()).collect::<Vec<_>>(),
+            ))
+            // Ok(Arc::new(a.into_par_iter().map(|s| s.0.into_repr()).collect::<Vec<_>>()))
         })
         .collect::<Result<Vec<_>, SynthesisError>>()?;
     info!("ZQ: a_s end: {:?}", now.elapsed()); // Added by jackoelv for C2 20210330
